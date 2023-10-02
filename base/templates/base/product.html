@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+
+{% block title %}
+    product control
+{% endblock title %}
+    
+
+{% block content %}
+    <div>
+        <div>
+            {% for product in products %}
+            <hr>
+            <a style="text-decoration: none; color: black;" href="{% url 'home' %}">
+                {{product}}
+            </a> 
+            <form action="{% url 'add_to_cart' product.id %}" method='POST'>
+                {% csrf_token %}
+                <input type="number" name="quantity" style="width:30px; margin-left: 410px; margin-top: 0px;" min="1">
+                <Button style="margin-left: 400px; " name="clickedProduct">+Add</Button>
+            </form>
+            {% endfor %} 
+        </div>
+    </div>
+{% endblock content %}
+    
