@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+
+{% block title %}
+    Authentification
+{% endblock title %}
+
+
+{% block content %}
+    <div>
+        {% if page == 'signupPage' %}
+            <div>
+                <form action="" method='POST'>
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit">SignUp</button>
+                    <hr>
+                    have an account alread <a href="{% url 'login' %}">Login here</a>
+                </form>
+            </div>
+        {% elif page == 'loginPage' %}
+            <div>
+                <form action="" method='POST'>
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit">Login</button>
+                    <hr>
+                    don't have an account <a href="{% url 'signup' %}">Signup here</a>
+                </form>
+            </div>
+        {% else %}
+            <div>
+
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
+    
+    

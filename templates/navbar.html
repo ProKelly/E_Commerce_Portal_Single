@@ -1,0 +1,22 @@
+
+<style>
+    .navbar-design {
+        display: flexbox;
+        orientation:landscape;
+        background-color: goldenrod;
+    }
+    .navbar-design a{
+        text-decoration: none;
+        color: white;
+        font-size: large;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+</style>
+
+<div class="navbar-design">
+    <a href="{% url 'home' %}">@Home</a>
+</div>
+
+<div class="navbar-design">
+    <a href="{% url 'logout' %}">Logout</a>
+</div>

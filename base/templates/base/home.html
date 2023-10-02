@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+
+
+{% block title %}
+    Home page
+{% endblock title %}
+
+
+{% block content %}
+
+<style>
+    .gridview-design {
+        display: grid;
+        grid-template-columns: 1fr 2fr 2fr;
+    }
+    .gridview-design button {
+        display: block;
+        heigth: 50px;
+        width: 55px;
+        border-radius: 0px;
+        margin-left: 10px;
+        margin-top: 10px;
+        background-color: #0d6efd;
+        color: white;
+    }
+    .gridview-design button:hover {
+        background-color: red;
+        transition: 0.5s;
+    }
+
+    .gridview-design a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+    {% if page == 'homePage' %}
+
+    <div class="gridview-design">
+        <div>
+             <a href="{% url 'category' %}"><Button style="width: 120px;">New Category</Button></a>   
+             <a href="{% url 'product' %}"><Button style="width: 120px;">New Product</Button></a>
+             <a href="{% url 'view_cart_item' %}"><Button>Cart</Button></a>
+        </div>
+
+        <div>
+            {% for product in products %}
+            <hr>
+            <a style="text-decoration: none; color: black;" href="{% url 'home' %}">
+                {{product}}
+            </a> 
+            <form action="{% url 'add_to_cart' product.id %}" method='POST'>
+                {% csrf_token %}
+                <input type="number" name="quantity" style="width:30px; margin-left: 410px; margin-top: 0px;" min="1">
+                <Button style="margin-left: 400px; " name="clickedProduct">+Add</Button>
+            </form>
+            {% endfor %} 
+        </div>
+
+    </div>
+    
+    {% elif page == 'categoryPage' %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-primary" style="margin-left: 10px;">Submit</button>
+        </form>
+
+    {% elif  page == 'productPage' %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-primary" style="margin-left: 10px;">Submit</button>
+        </form>
+    {% endif %}
+        
+{% endblock content %}
+    
+    
